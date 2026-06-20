@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cyber-bg: #060816;
+  --color-cyber-card: rgba(10, 15, 30, 0.7);
+  --color-cyber-cyan: #00f0ff;
+  --color-cyber-cyan-dim: rgba(0, 240, 255, 0.15);
+  --color-cyber-cyan-border: rgba(0, 240, 255, 0.25);
+  --color-cyber-green: #00ff66;
+  --color-cyber-green-dim: rgba(0, 255, 102, 0.15);
+  --color-cyber-orange: #ffaa00;
+  --color-cyber-red: #ff0055;
+  --color-cyber-blue: #3b82f6;
+  --color-cyber-purple: #8b5cf6;
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-cyber-pulse: cyber-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-text-glitch: text-glitch 4s ease-in-out infinite alternate;
+  
+  @keyframes scanline {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes cyber-pulse {
+    0%, 100% {
+      opacity: 0.15;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+    50% {
+      opacity: 0.35;
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+    }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060816;
+  border-left: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.2);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 240, 255, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.5);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+}
+
+body {
+  margin: 0;
+  background-color: #060816;
+  color: #94a3b8;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Cyber Utilities */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+}
+
+.cyber-grid-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+  border-color: rgba(0, 240, 255, 0.4);
+}
+
+.glow-cyan-hover:hover {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+  border-color: rgba(0, 240, 255, 0.6);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
+  border-color: rgba(0, 255, 102, 0.4);
+}
+
+.glow-red {
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.15);
+  border-color: rgba(255, 0, 85, 0.4);
+}
+
+/* Glassmorphism CSS */
+.cyber-glass {
+  background: rgba(8, 12, 28, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.12);
+}
+
+/* Corner Accents for Cyberpunk look */
+.cyber-corners {
+  position: relative;
+}
+
+.cyber-corners::before,
+.cyber-corners::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #00f0ff;
+  border-style: solid;
+  pointer-events: none;
+}
+
+.cyber-corners::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+
+.cyber-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+/* Terminal Scanline overlay */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 10;
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none;
+}
+
+/* Root sizing overrides */
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  border: none;
+  min-height: 100vh;
+}
